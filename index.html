@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Basic Geometry</title>
+</head>
+<style>
+    /* Main div styling */
+    body {
+
+        margin: 0;
+        display: flex;
+        justify-content: center; /* Center horizontally */
+        align-items: center;     /* Center vertically */
+    }
+
+    .wrapper {
+        width: 70%;
+        background-color: #f2f2f2;  /* Sample background color */
+    }
+
+    /* Each section styling */
+    section {
+        width: 65%;
+        background-color: #e6e6e6;  /* Sample background color */
+        border: 2px solid #333;  /* Sample border style */
+        margin: 20px auto;  /* 20px from top/bottom and centers the section horizontally */
+        box-sizing: border-box;  /* Includes padding and border in element's total width and height */
+    }
+    div, section {
+        padding: 5px;           /* 5 pixels padding on all sides */
+        box-sizing: border-box; /* Includes padding and border in the width and height */
+    }
+
+    /* Div with class "go" styling */
+    .go {
+        text-align: center;  /* Centers its text content */
+    }
+</style>
+
+
+    <body>
+        <div class="wrapper">
+            <h1 id="top">Basic Geometry</h1>
+            <p>In this section, we are going to find the Area of some two-dimension shapes</p>
+            <p>You can click on any shape below:</p>
+            <ul>
+                <li><a href="#circle">Circle</a></li>
+                <li><a href="#triangle">Triangle</a></li>
+                <li><a href="#square">Square</a></li>
+                <li><a href="#rectangle">Rectangle</a></li>
+            </ul>
+        
+            <!-- Circle Section -->
+            <section id="circle">
+                <h2>Circle Area</h2>
+                <div>
+                    <label for="radius">Enter the value of the circle's radius:</label>
+                    <input type="text" id="radius">
+                </div>
+                <div>
+                    <label for="circle-area">Result:</label>
+                    <input type="text" id="circle-area" readonly>
+                    <hr>
+                </div>
+                <button onclick="calculateCircleArea()">Calculate</button>
+            </section>
+            <div class="go">
+                <a href="#top">Go to top</a>
+            </div>
+            <!-- Triangle Section -->
+            <section id="triangle">
+                <h2>Triangle Area</h2>
+                <div>
+                    <label for="base">Enter the base length of the triangle:</label>
+                    <input type="text" id="base">
+                </div>
+                <div>
+                    <label for="height">Enter the height of the triangle:</label>
+                    <input type="text" id="height">
+                </div>
+                <div>
+                    <label for="triangle-area">Result:</label>
+                    <input type="text" id="triangle-area" readonly>
+                    <hr>
+                </div>
+                <button onclick="calculateTriangleArea()">Calculate</button>
+            </section>
+            <div class="go">
+                <a href="#top">Go to top</a>
+            </div>
+            <!-- Square Section -->
+            <section id="square">
+                <h2>Square Area</h2>
+                <div>
+                    <label for="side">Enter the side length of the square:</label>
+                    <input type="text" id="side">
+                </div>
+                <div>
+                    <label for="square-area">Result:</label>
+                    <input type="text" id="square-area" readonly>
+                    <hr>
+                </div>
+                <button onclick="calculateSquareArea()">Calculate</button>
+            </section>
+            <div class="go">
+                <a href="#top">Go to top</a>
+            </div>
+            <!-- Rectangle Section -->
+            <section id="rectangle">
+                <h2>Rectangle Area</h2>
+                <div>
+                    <label for="length">Enter the length of the rectangle:</label>
+                    <input type="text" id="length">
+                </div>
+                <div>
+                    <label for="width">Enter the width of the rectangle:</label>
+                    <input type="text" id="width">
+                </div>
+                <div>
+                    <label for="rectangle-area">Result:</label>
+                    <input type="text" id="rectangle-area" readonly>
+                    <hr>
+                </div>
+                <button onclick="calculateRectangleArea()">Calculate</button>
+            </section>
+            <div class="go">
+                <a href="#top">Go to top</a>
+            </div>
+        </div>
+        <script>
+            function calculateCircleArea() {
+                // Getting the value of the radius with DOM:
+                var radius = document.getElementById("radius").value;
+            
+                // Trimming the white space if any, then convert the value to a numeric data type
+                radius = parseFloat(radius.trim());
+            
+                // If the input is not a number or is negative, alert the user and exit the function
+                if (isNaN(radius) || radius < 0) {
+                    alert("Please enter a valid positive number for the radius.");
+                    return;
+                }
+            
+                // Create a new variable for the area and assign the formula of the circle to it
+                var area = Math.PI * Math.pow(radius, 2);
+            
+                // Use document.getElementById to write the result into the read-only input box of the circle area
+                document.getElementById("circle-area").value = area.toFixed(2); // Rounded to 2 decimal places for presentation
+            }
+
+            function calculateTriangleArea() {
+                // Getting the value of the triangle's base and height with DOM
+                var base = document.getElementById("base").value;
+                var height = document.getElementById("height").value;
+
+                // Trimming the white space if any, then convert the value to a numeric data type
+                base = parseFloat(base.trim());
+                height = parseFloat(height.trim());
+
+                // If the input is not a number or is negative, alert the user and exit the function
+                if (isNaN(base) || base <= 0 || isNaN(height) || height <= 0) {
+                    alert("Please enter valid positive numbers for the base and height.");
+                    return;
+                }
+            
+                // Calculate the area using the given formula
+                var area = 0.5 * base * height;
+            
+                // Use document.getElementById to write the result into the read-only input box of the triangle area
+                document.getElementById("triangle-area").value = area.toFixed(2); // Rounded to 2 decimal places for presentation
+            }   
+
+            function calculateSquareArea() {
+                // Getting the value of the square's side with DOM:
+                var side = document.getElementById("side").value;
+
+                // Trimming the white space if any, then convert the value to a numeric data type
+                side = parseFloat(side.trim());
+
+                // If the input is not a number or is negative, alert the user and exit the function
+                if (isNaN(side) || side <= 0) {
+                    alert("Please enter a valid positive number for the side of the square.");
+                    return;
+                }
+            
+                // Calculate the area using the formula for a square:
+                var area = side * side;
+            
+                // Use document.getElementById to write the result into the read-only input box of the square area
+                document.getElementById("square-area").value = area.toFixed(2); // Rounded to 2 decimal places for presentation
+            }
+
+            function calculateRectangleArea() {
+                // Getting the values of the rectangle's width and height with DOM:
+                var width = document.getElementById("width").value;
+                var height = document.getElementById("length").value; // Assuming the id for length is 'length'
+
+                // Trimming the white spaces if any, then convert the values to a numeric data type
+                width = parseFloat(width.trim());
+                height = parseFloat(height.trim());
+
+                // If the inputs are not numbers or are negative, alert the user and exit the function
+                if (isNaN(width) || width <= 0 || isNaN(height) || height <= 0) {
+                    alert("Please enter valid positive numbers for the width and height of the rectangle.");
+                    return;
+                }
+            
+                // Calculate the area using the formula for a rectangle:
+                var area = width * height;
+            
+                // Use document.getElementById to write the result into the read-only input box of the rectangle area
+                document.getElementById("rectangle-area").value = area.toFixed(2);
+            }
+            </script>
+
+            
+    </body>
+
+</html>
